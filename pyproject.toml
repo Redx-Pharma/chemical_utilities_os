@@ -1,0 +1,52 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "setuptools>=63.2.0",
+    "wheel>=0.37.1",
+]
+
+[project]
+name = "chemutil"
+version = "0.0.2"
+authors = [
+    {name = "James McDonagh"},
+]
+license = {file = "LICENSE"}
+description = "Utilies module for chemical data"
+requires-python = ">=3.8,<4.0"
+classifiers = [
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+]
+
+# The versions set are the ones used for the original install on Mac OS so should work if pinned to only those versions i.e. >= --> ==
+# dgl version 2.1.0
+dependencies = [
+    "numpy>=1.24.4",
+    "pytest>=7.4.4",
+    "rdkit>=2024.9",
+    "pandas>=2.0.0",
+    "XlsxWriter>=3.2.0",
+    "pre-commit>=3.5.0",
+    "paretoset@git+https://github.com/tommyod/paretoset#egg=master",
+    #"pymoo>=0.6.1.1",
+    #"jax>=0.4.1",
+    #"torch>=2.2.1",
+    "scikit-learn>=1.5.1",
+    "deepchem>=2.8.0",
+    "seaborn>=0.13.2",
+    #"gauche>=0.1.6",
+    "lightgbm>=4.5.0",
+    "xgboost>=2.1.1",
+    "pdocs>=1.2.0",
+    #"transformers>=4.44.2",
+    "mol2vec@git+https://github.com/samoturk/mol2vec#egg=master",
+    #"simpletransformers>=0.70.1",
+    "sentence-transformers>=3.1.1",
+    "plotly>=5.24.1",
+    "datamol>=0.12.5" ,
+    "selfies>=2.1.2",
+    "mordred[full]>=1.2.0",
+    "scaffoldgraph>=1.1.2",
+]

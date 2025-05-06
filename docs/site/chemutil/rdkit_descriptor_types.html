@@ -1,0 +1,1548 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+
+  <title>chemutil.rdkit_descriptor_types API documentation</title>
+  <meta name="description" content="module to store descriptor names categorised by type" />
+
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+
+  <style type="text/css">
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+</style>
+  <style type="text/css">
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  }
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; }
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+</style>
+  <style type="text/css">
+  pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #3D7B7B; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #F00 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666 } /* Operator */
+.codehilite .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #9C6500 } /* Comment.Preproc */
+.codehilite .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #E40000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #008400 } /* Generic.Inserted */
+.codehilite .go { color: #717171 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #04D } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #687822 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #00F; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #800 } /* Name.Constant */
+.codehilite .nd { color: #A2F } /* Name.Decorator */
+.codehilite .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #00F } /* Name.Function */
+.codehilite .nl { color: #767600 } /* Name.Label */
+.codehilite .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #BBB } /* Text.Whitespace */
+.codehilite .mb { color: #666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #A45A77 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #00F } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666 } /* Literal.Number.Integer.Long */
+  </style>
+  <style type="text/css">
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+</style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+<div id="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+    <li class="set"><h3>Super-module</h3>
+      <ul>
+        <li class="mono"><a href="index.html">chemutil</a></li>
+      </ul>
+    </li>
+    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
+
+  <ul>
+    <li class="mono"><a href="#chemutil.rdkit_descriptor_types.categorical_rdkit_descriptor_names">categorical_rdkit_descriptor_names</a></li>
+    <li class="mono"><a href="#chemutil.rdkit_descriptor_types.continous_rdkit_descriptor_names">continous_rdkit_descriptor_names</a></li>
+    <li class="mono"><a href="#chemutil.rdkit_descriptor_types.semi_categorical_rdkit_descriptor_names">semi_categorical_rdkit_descriptor_names</a></li>
+  </ul>
+
+    </li>
+
+
+
+    </ul>
+  </div>
+
+<article id="content">
+
+
+
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">chemutil.rdkit_descriptor_types</span> module</h1>
+  <p>module to store descriptor names categorised by type</p>
+
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-chemutil.rdkit_descriptor_types', this);">Show source &equiv;</a></p>
+  <div id="source-chemutil.rdkit_descriptor_types" class="source">
+    <div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin.env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="s2">&quot;module to store descriptor names categorised by type&quot;</span>
+
+<span class="n">continous_rdkit_descriptor_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;AUTOCORR2D_79&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_89&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_90&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_91&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_92&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_93&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_94&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_95&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_96&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BertzCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi0n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi0v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi1n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi1v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi2n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi2v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi3n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi3v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi4n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi4v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExactMolWt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Kappa2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Kappa3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LabuteASA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaxAbsEStateIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaxEStateIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MinEStateIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MolLogP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MolMR&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MolWt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;qed&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">categorical_rdkit_descriptor_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;HeavyAtomCount&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NHOHCount&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NOCount&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumAliphaticCarbocycles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumAliphaticHeterocycles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumAliphaticRings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumAromaticCarbocycles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumAromaticHeterocycles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumAromaticRings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumHAcceptors&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumHDonors&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumHeteroatoms&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumRadicalElectrons&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumRotatableBonds&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumSaturatedCarbocycles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumSaturatedHeterocycles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumSaturatedRings&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NumValenceElectrons&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RingCount&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Al_COO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Al_OH&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Al_OH_noTert&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_ArN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Ar_COO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Ar_N&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Ar_NH&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Ar_OH&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_COO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_COO2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_C_O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_C_O_noCOO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_C_S&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_HOCCN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Imine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_NH0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_NH1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_NH2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_N_O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Ndealkylation1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Ndealkylation2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_Nhpyrrole&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_SH&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_aldehyde&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_alkyl_carbamate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_alkyl_halide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_allylic_oxid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_amide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_amidine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_aniline&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_aryl_methyl&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_azide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_azo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_barbitur&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_benzene&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_benzodiazepine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_bicyclic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_diazo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_dihydropyridine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_epoxide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_ester&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_ether&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_furan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_guanido&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_halogen&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_hdrzine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_hdrzone&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_imidazole&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_imide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_isocyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_isothiocyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_ketone&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_ketone_Topliss&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_lactam&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_lactone&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_methoxy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_morpholine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_nitrile&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_nitro&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_nitro_arom&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_nitro_arom_nonortho&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_nitroso&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_oxazole&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_oxime&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_para_hydroxylation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_phenol&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_phenol_noOrthoHbond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_phos_acid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_phos_ester&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_piperdine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_piperzine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_priamide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_prisulfonamd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_pyridine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_quatN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_sulfide&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_sulfonamd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_sulfone&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_term_acetylene&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_tetrazole&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_thiazole&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_thiocyan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_thiophene&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_unbrch_alkane&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fr_urea&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">semi_categorical_rdkit_descriptor_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;AUTOCORR2D_1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_100&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_101&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_102&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_103&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_104&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_105&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_106&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_107&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_108&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_109&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_11&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_110&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_111&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_112&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_113&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_114&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_115&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_116&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_117&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_118&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_119&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_12&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_120&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_121&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_122&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_123&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_124&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_125&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_126&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_127&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_128&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_129&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_13&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_130&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_131&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_132&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_133&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_134&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_135&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_136&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_137&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_138&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_139&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_14&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_140&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_141&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_142&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_143&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_144&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_145&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_146&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_147&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_148&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_149&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_15&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_150&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_151&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_152&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_153&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_154&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_155&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_156&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_157&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_158&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_159&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_16&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_160&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_161&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_162&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_163&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_164&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_165&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_166&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_167&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_168&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_169&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_17&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_170&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_171&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_172&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_173&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_174&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_175&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_176&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_177&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_178&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_179&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_18&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_180&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_181&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_182&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_183&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_184&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_185&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_186&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_187&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_188&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_189&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_19&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_190&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_191&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_192&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_20&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_21&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_22&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_23&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_24&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_25&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_26&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_27&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_28&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_29&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_30&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_31&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_32&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_33&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_34&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_35&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_36&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_37&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_38&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_39&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_40&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_41&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_42&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_43&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_44&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_45&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_46&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_47&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_48&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_49&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_50&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_51&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_52&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_53&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_54&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_55&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_56&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_57&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_58&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_59&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_60&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_61&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_62&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_63&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_64&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_65&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_66&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_67&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_68&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_69&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_70&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_71&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_72&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_73&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_74&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_75&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_76&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_77&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_78&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_80&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_81&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_82&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_83&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_84&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_85&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_86&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_87&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_88&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_97&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_98&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AUTOCORR2D_99&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AvgIpc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_CHGHI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_CHGLO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_LOGPHI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_LOGPLOW&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_MRHI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_MRLOW&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_MWHI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BCUT2D_MWLOW&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BalabanJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chi1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA11&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EState_VSA9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FpDensityMorgan1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FpDensityMorgan2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FpDensityMorgan3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FractionCSP3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HallKierAlpha&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HeavyAtomMolWt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ipc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Kappa1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaxAbsPartialCharge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaxPartialCharge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MinAbsEStateIndex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MinAbsPartialCharge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MinPartialCharge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA11&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA12&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA13&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA14&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PEOE_VSA9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SMR_VSA9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SPS&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA11&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA12&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SlogP_VSA9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TPSA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VSA_EState9&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+  </div>
+
+  </header>
+
+  <section id="section-items">
+    <h2 class="section-title" id="header-variables">Module variables</h2>
+      <div class="item">
+      <p id="chemutil.rdkit_descriptor_types.categorical_rdkit_descriptor_names" class="name">var <span class="ident">categorical_rdkit_descriptor_names</span></p>
+
+
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="chemutil.rdkit_descriptor_types.continous_rdkit_descriptor_names" class="name">var <span class="ident">continous_rdkit_descriptor_names</span></p>
+
+
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="chemutil.rdkit_descriptor_types.semi_categorical_rdkit_descriptor_names" class="name">var <span class="ident">semi_categorical_rdkit_descriptor_names</span></p>
+
+
+  <div class="source_cont">
+</div>
+
+      </div>
+
+
+
+  </section>
+</article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Generated by <a href="https://github.com/timothycrosley/pdocs">pdocs 1.2.0</a>
+    </p>
+  </footer>
+</div>
+</body>
+</html>
