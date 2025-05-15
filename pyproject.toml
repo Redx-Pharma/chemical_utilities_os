@@ -9,6 +9,7 @@ requires = [
 name = "chemutil"
 version = "0.0.2"
 authors = [
+    {name = "Redx Pharma Team"},
     {name = "James McDonagh"},
 ]
 license = {file = "LICENSE"}

@@ -281,6 +281,11 @@ test_set_df.to_csv(f"test_set_summary_metrics.csv", index=False)
 ## Help/FAQ
 
 
-## Authors
+## Contributions
+Authors:
+* Redx Pharma Team
 
-* James L. McDonagh
+Notable contributions
+* S. Yung
+* A. Haworth
+* J. McDonagh
